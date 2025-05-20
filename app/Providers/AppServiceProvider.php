@@ -1,9 +1,9 @@
 <?php
 namespace App\Providers;
 
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,15 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (app()->runningInConsole()) {
-            return; // hindari akses DB saat proses build seperti composer install
+        Schema::defaultStringLength(191);
+
+        // Khusus SQLite: aktifkan foreign key constraint
+        if (DB::getDriverName() === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys=ON;');
         }
-
-        // Schema::defaultStringLength(191);
-
-        // // Khusus SQLite: aktifkan foreign key constraint
-        // if (DB::getDriverName() === 'sqlite') {
-        //     DB::statement('PRAGMA foreign_keys=ON;');
-        // }
     }
 }
