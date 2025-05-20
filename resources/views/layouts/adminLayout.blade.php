@@ -19,15 +19,15 @@
     <title>SITA PWK</title>
     <meta name="theme-color" content="#ffffff" />
     <!-- Vendors styles-->
-    <link rel="stylesheet" href="{{ secure_asset('coreui/vendors/simplebar/css/simplebar.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('coreui/css/vendors/simplebar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('coreui/vendors/simplebar/css/simplebar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('coreui/css/vendors/simplebar.css') }}" />
     <!-- Main styles for this application-->
-    <link href="{{ secure_asset('coreui/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('coreui/css/style.css') }}" rel="stylesheet" />
     <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="{{ secure_asset('coreui/css/examples.css') }}" rel="stylesheet" />
-    <script src="{{ secure_asset('coreui/js/config.js') }}"></script>
-    <script src="{{ secure_asset('coreui/js/color-modes.js') }}"></script>
-    <link href="{{ secure_asset('coreui/vendors/@coreui/chartjs/css/coreui-chartjs.css') }}" rel="stylesheet" />
+    <link href="{{ asset('coreui/css/examples.css') }}" rel="stylesheet" />
+    <script src="{{ asset('coreui/js/config.js') }}"></script>
+    <script src="{{ asset('coreui/js/color-modes.js') }}"></script>
+    <link href="{{ asset('coreui/vendors/@coreui/chartjs/css/coreui-chartjs.css') }}" rel="stylesheet" />
 
     <!-- Datepicker & Datatables-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -48,7 +48,7 @@
     <div class="sidebar sidebar-light sidebar-fixed border-end" id="sidebar">
         <div class="sidebar-header border-bottom">
             <div class="sidebar-brand">
-                <img src="{{ secure_asset('coreui/assets/brand/logo-pwk.png') }}" alt="CoreUI Logo" class="sidebar-brand-full"
+                <img src="{{ asset('coreui/assets/brand/logo-pwk.png') }}" alt="CoreUI Logo" class="sidebar-brand-full"
                     width="100%" height="100%" />
             </div>
         </div>
@@ -58,7 +58,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.home') }}">
                     <svg class="nav-icon text-dark">
-                        <use xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-apps') }}">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-apps') }}">
                         </use>
                     </svg>
                     Homepage</a>
@@ -67,7 +67,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.periode') }}">
                     <svg class="nav-icon text-dark">
-                        <use xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-flag-alt') }}">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-flag-alt') }}">
                         </use>
                     </svg>
                     Periode TA</a>
@@ -76,7 +76,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.pd-info') }}">
                     <svg class="nav-icon text-dark">
-                        <use xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-bookmark') }}">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-bookmark') }}">
                         </use>
                     </svg>
                     Edit Panduan</a>
@@ -87,7 +87,7 @@
             <li class="nav-group">
                 <a class="nav-link nav-group-toggle" href="#">
                     <svg class="nav-icon text-dark">
-                        <use xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-people') }}">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-people') }}">
                         </use>
                     </svg>
                     Data Pengguna</a>
@@ -111,7 +111,7 @@
             <li class="nav-group">
                 <a class="nav-link nav-group-toggle" href="#">
                     <svg class="nav-icon text-dark">
-                        <use xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}">
                         </use>
                     </svg>
                     Rekapitulasi TA</a>
@@ -132,7 +132,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.sidang-buat') }}">
                     <svg class="nav-icon text-dark">
-                        <use xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-pen-nib') }}">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-pen-nib') }}">
                         </use>
                     </svg>
                     Penjadwalan Sidang</a>
@@ -149,7 +149,7 @@
                     onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
                     style="margin-inline-start: -14px">
                     <svg class="icon icon-lg">
-                        <use xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-menu') }}"></use>
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-menu') }}"></use>
                     </svg>
                 </button>
                 <ul class="header-nav d-none d-lg-flex">
@@ -164,7 +164,7 @@
                             aria-haspopup="true" aria-expanded="false">
                             <div class="avatar avatar-md">
                                 <img class="avatar-img"
-                                    src="{{ secure_asset('coreui/assets/img/avatars/cat-Freepik.png') }}"
+                                    src="{{ asset('coreui/assets/img/avatars/cat-Freepik.png') }}"
                                     alt="user@email.com" />
                             </div>
                         </a>
@@ -172,7 +172,7 @@
                             <a class="dropdown-item" href="#">
                                 <svg class="icon me-2">
                                     <use
-                                        xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-user') }}">
+                                        xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-user') }}">
                                     </use>
                                 </svg>
                                 Profile</a>
@@ -181,7 +181,7 @@
                                                      document.getElementById('logout-form').submit();">
                                 <svg class="icon me-2">
                                     <use
-                                        xlink:href="{{ secure_asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}">
+                                        xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}">
                                     </use>
                                 </svg>
                                 Logout</a>
@@ -215,8 +215,8 @@
         </footer>
     </div>
     <!-- CoreUI and necessary plugins-->
-    <script src="{{ secure_asset('coreui/vendors/@coreui/coreui/js/coreui.bundle.min.js') }}"></script>
-    <script src="{{ secure_asset('coreui/vendors/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('coreui/vendors/@coreui/coreui/js/coreui.bundle.min.js') }}"></script>
+    <script src="{{ asset('coreui/vendors/simplebar/js/simplebar.min.js') }}"></script>
     <script>
         const header = document.querySelector("header.header");
 

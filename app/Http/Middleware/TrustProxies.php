@@ -3,8 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
-use Fideloper\Proxy\TrustProxies as Middleware; // Laravel <7
-// use Illuminate\Http\Middleware\TrustProxies as Middleware; // Laravel >=7
+use Illuminate\Http\Middleware\TrustProxies as Middleware;
 
 class TrustProxies extends Middleware
 {

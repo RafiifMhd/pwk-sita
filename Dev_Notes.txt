@@ -4,6 +4,8 @@ $   php artisan serve --host=127.0.0.1
 
 $   php artisan migrate:fresh --seed
 
+$   php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:clear
+
 Error Storage:
     $ rmdir public\storage /s /q
     $ php artisan storage:link
@@ -17,7 +19,7 @@ AIprompt:
 
 
 -----------------------------------------------------------------------------------------------
-📌✏ notes bimbingan hari ini:
+notes bimbingan hari ini:
     1. edit pembukaan periode buatkan 4 bagian  (pengajuan proposal, sempro, semhas, su)
     2. ⁠tambahkan catatan tolak/terima (100-150 kata)
     3. ⁠tambahkan maks. kuota per dosen yg mengajukan topik (kuota bisa diatur oleh admin/koor TA, tergantung jumlah dan beban dosen yang ada di PWK)
