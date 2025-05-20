@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        URL::forceScheme('https');
         Schema::defaultStringLength(191);
 
         // Khusus SQLite: aktifkan foreign key constraint
