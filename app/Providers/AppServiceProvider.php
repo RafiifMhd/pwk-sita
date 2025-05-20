@@ -24,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
             return; // hindari akses DB saat proses build seperti composer install
         }
 
-        Schema::defaultStringLength(191);
+        // Schema::defaultStringLength(191);
 
-        // Khusus SQLite: aktifkan foreign key constraint
-        if (DB::getDriverName() === 'sqlite') {
-            DB::statement('PRAGMA foreign_keys=ON;');
-        }
+        // // Khusus SQLite: aktifkan foreign key constraint
+        // if (DB::getDriverName() === 'sqlite') {
+        //     DB::statement('PRAGMA foreign_keys=ON;');
+        // }
     }
 }
