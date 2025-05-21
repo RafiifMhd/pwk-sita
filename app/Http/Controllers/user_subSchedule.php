@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\SidangSubmission;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -56,11 +55,16 @@ class user_subSchedule extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -75,7 +79,7 @@ class user_subSchedule extends Controller
                         'penguji2'    => optional($item->penguji2)->name,
                         'tanggal'     => $item->jadwal_sidang,
                         'waktu'       => $item->jadwal_sidang,
-                        'status'      => $item->status_sidang, 
+                        'status'      => $item->status_sidang,
                     ];
                 });
 

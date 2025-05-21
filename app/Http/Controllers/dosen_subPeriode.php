@@ -32,7 +32,7 @@ class dosen_subPeriode extends Controller
 
         return view('_dosen.periodeTopik', [
             'kuota_bimbingan' => $data?->kuota_bimbingan,
-            'kuota_berjalan' => $data?->kuota_berjalan,
+            'kuota_berjalan'  => $data?->kuota_berjalan,
         ]);
     }
 
@@ -53,11 +53,16 @@ class dosen_subPeriode extends Controller
 
             $recordsFiltered = $query->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = Period::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -108,11 +113,16 @@ class dosen_subPeriode extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = Topic::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->withCount([
@@ -159,7 +169,6 @@ class dosen_subPeriode extends Controller
             return response()->json(['message' => 'Tidak ada periode pengajuan proposal yang sedang terbuka, cek halaman Info Periode.'], 400);
         }
         $periodIdToUse = $openPeriod->id;
-
 
         $data = ProposalKuotaDosen::with(['dosen', 'period'])
             ->where('dosen_id', auth()->id())

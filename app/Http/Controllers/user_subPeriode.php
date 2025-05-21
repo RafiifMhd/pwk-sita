@@ -42,11 +42,16 @@ class user_subPeriode extends Controller
 
             $recordsFiltered = $query->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = Period::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -98,11 +103,16 @@ class user_subPeriode extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = Topic::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->withCount([
@@ -121,7 +131,7 @@ class user_subPeriode extends Controller
                     $namaDosen  = urlencode(optional($item->dosen)->name ?? '');
 
                     $link = route('user.ta-proposal', ['idTopik' => $idTopik, 'idDosen' => $idDosen, 'namaDosen' => $namaDosen, 'titleTopik' => $titleTopik]);
-             
+
                     return [
                         'id'               => $item->id,
                         'period_name'      => optional($item->period)->name,

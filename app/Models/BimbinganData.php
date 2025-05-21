@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class BimbinganData extends Model
 {
@@ -18,6 +19,11 @@ class BimbinganData extends Model
         'judul',
         'status_bimbingan',
     ];
+
+    public static function getTableColumns()
+    {
+        return Schema::getColumnListing((new self)->getTable());
+    }
 
     // Perbaikan penamaan fungsi dosen di ProposalSubmission model.
     public function dosen()

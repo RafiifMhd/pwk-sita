@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\ProposalSubmission;
 use Illuminate\View\View;
 
 class admin_subTA extends Controller

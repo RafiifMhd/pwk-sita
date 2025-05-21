@@ -2,10 +2,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema; // Fix ordering
 
 class Topic extends Model
 {
     protected $fillable = ['title', 'focus', 'period_id', 'dosen_id', 'user_id', 'kuota_topik'];
+
+    public static function getTableColumns() // Fix ordering
+    {
+        return Schema::getColumnListing((new self)->getTable());
+    }
 
     public function proposalSubmission()
     {

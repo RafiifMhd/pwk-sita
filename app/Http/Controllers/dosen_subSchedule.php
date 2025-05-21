@@ -46,11 +46,16 @@ class dosen_subSchedule extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)

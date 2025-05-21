@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class RekapProposal extends Model
 {
@@ -18,6 +19,11 @@ class RekapProposal extends Model
         'kuota_saat_rekap',
         'jumlah_bimbingan_saat_rekap',
     ];
+
+    public static function getTableColumns()
+    {
+        return Schema::getColumnListing((new self)->getTable());
+    }
 
     // Relasi ke periode
     public function period()

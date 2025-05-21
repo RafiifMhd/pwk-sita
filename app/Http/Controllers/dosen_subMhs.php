@@ -38,8 +38,8 @@ class dosen_subMhs extends Controller
         if ($request->ajax()) {
             $query = ProposalSubmission::with(['topik.dosen', 'user', 'topik.period'])
                 ->where(function ($q) {
-                    $q->where('dosen_id', auth()->id())
-                        ->orWhere('dosen2_id', auth()->id());
+                    $q->where('dosen_id', auth()->id());
+                    //->orWhere('dosen2_id', auth()->id());
                 });
 
             $recordsTotal = ProposalSubmission::count();
@@ -59,11 +59,16 @@ class dosen_subMhs extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = ProposalSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -168,11 +173,16 @@ class dosen_subMhs extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = BimbinganData::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -224,11 +234,16 @@ class dosen_subMhs extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)

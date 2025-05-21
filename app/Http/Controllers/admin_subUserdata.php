@@ -48,11 +48,16 @@ class admin_subUserdata extends Controller
 
             $recordsFiltered = $query->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = User::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -90,16 +95,21 @@ class admin_subUserdata extends Controller
 
             $recordsFiltered = $query->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = User::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
                 ->take($request->length)
-                ->get(['id', 'name', 'nip', 'wa_dos', 'tipe_dos', 'email',  'created_at']);
+                ->get(['id', 'name', 'nip', 'wa_dos', 'tipe_dos', 'email', 'created_at']);
 
             return response()->json([
                 'draw'            => intval($request->draw),
@@ -131,16 +141,21 @@ class admin_subUserdata extends Controller
 
             $recordsFiltered = $query->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = User::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
                 ->take($request->length)
-                ->get(['id', 'name', 'nim', 'email',  'created_at']);
+                ->get(['id', 'name', 'nim', 'email', 'created_at']);
 
             return response()->json([
                 'draw'            => intval($request->draw),
@@ -244,7 +259,7 @@ class admin_subUserdata extends Controller
         User::create([
             'name'     => $request->name,
             'email'    => $request->email,
-            'tipe_dos'    => $request->tipe_dos,
+            'tipe_dos' => $request->tipe_dos,
             'nip'      => $request->nip,
             'wa_dos'   => $request->no_telf,
             'type'     => 2,

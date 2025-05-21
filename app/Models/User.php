@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Schema; // Fix ordering
 
 class User extends Authenticatable
 {
@@ -88,6 +89,11 @@ class User extends Authenticatable
     public function rekapProposal()
     {
         return $this->hasMany(RekapProposal::class, 'dosen_id');
+    }
+
+    public static function getTableColumns() // Fix ordering
+    {
+        return Schema::getColumnListing((new self)->getTable());
     }
 
 }

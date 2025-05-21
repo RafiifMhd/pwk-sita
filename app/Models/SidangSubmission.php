@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema; 
 
 class SidangSubmission extends Model
 {
@@ -36,6 +37,11 @@ class SidangSubmission extends Model
         'fsu5_nilai',
 
     ];
+
+    public static function getTableColumns() // Fix ordering
+    {
+        return Schema::getColumnListing((new self)->getTable());
+    }
 
     public function dosen()
     {

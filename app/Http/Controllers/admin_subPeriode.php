@@ -39,11 +39,16 @@ class admin_subPeriode extends Controller
 
             $recordsFiltered = $query->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = Period::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -97,14 +102,14 @@ class admin_subPeriode extends Controller
 
             $recordsFiltered = $query->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
 
-                $allowedSorts = ['kuota_bimbingan', 'created_at'];
-
-                if (in_array($orderColumn, $allowedSorts)) {
+                $validColumns = ProposalKuotaDosen::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
                     $query->orderBy($orderColumn, $orderDir);
                 }
             }

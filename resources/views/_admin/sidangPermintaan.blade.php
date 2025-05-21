@@ -17,6 +17,7 @@
                     <div class="col-12 mt-2">
                         <span class="fw-normal">Daftar Permintaan Sidang</span>
                         <table class="table table-bordered" id="tablePermintaan">
+                            <pre>{{ route('admin.sidang-jsonData') }}</pre>
                             <thead>
                                 <tr class="table-secondary">
                                     <th scope="col">NIM</th>

@@ -157,11 +157,16 @@ class user_subSidang extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -206,16 +211,14 @@ class user_subSidang extends Controller
 
         $skemaMandiri = true;
 
-        // Jika skema mandiri false, maka cek periode aktif atau tidak 
-        if (! $skemaMandiri){
+        // Jika skema mandiri false, maka cek periode aktif atau tidak
+        if (! $skemaMandiri) {
             if (! $activePeriode) {
                 return response()->json([
                     'message' => 'Periode pengajuan Seminar Pembahasan saat ini belum dibuka.',
                 ], 403);
             }
         }
-
-            
 
         // Cek apakah user sudah memiliki pengajuan SEMHAS yang statusnya bukan 'Ditolak'
         $existingSubmission = SidangSubmission::where('user_id', auth()->id())
@@ -296,12 +299,16 @@ class user_subSidang extends Controller
 
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
-
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -422,11 +429,16 @@ class user_subSidang extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -490,11 +502,16 @@ class user_subSidang extends Controller
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
 
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -589,18 +606,18 @@ class user_subSidang extends Controller
         $filePath3 = $request->file('form3')->store('ubah/pengesahan', 'public');
 
         $proposal = SidangSubmission::create([
-            'user_id'         => auth()->id(),
-            'judul'           => $semhas->inp_judul,
-            'topik_id'        => $semhas->id_topik,
-            'dosen_id'        => $semhas->id_dosen,
-            'penguji_id'      => $semhas->penguji_id,
-            'penguji2_id'     => $semhas->penguji2_id,
+            'user_id'        => auth()->id(),
+            'judul'          => $semhas->inp_judul,
+            'topik_id'       => $semhas->id_topik,
+            'dosen_id'       => $semhas->id_dosen,
+            'penguji_id'     => $semhas->penguji_id,
+            'penguji2_id'    => $semhas->penguji2_id,
             'un1_buku'       => $filePath1,
             'un2_logbook'    => $filePath2,
             'un3_ba'         => $filePath3,
             'un4_pengesahan' => $filePath3,
-            'tipe_sidang'     => 'Ubah Nilai',
-            'status_sidang'   => 'Pending',
+            'tipe_sidang'    => 'Ubah Nilai',
+            'status_sidang'  => 'Pending',
         ]);
 
         return response()->json([
@@ -634,12 +651,16 @@ class user_subSidang extends Controller
 
             $filteredQuery   = clone $query;
             $recordsFiltered = $filteredQuery->count();
-
+            //Fix Ordering
             if ($request->has('order')) {
                 $orderColumnIndex = $request->order[0]['column'];
                 $orderColumn      = $request->columns[$orderColumnIndex]['data'];
                 $orderDir         = $request->order[0]['dir'];
-                $query->orderBy($orderColumn, $orderDir);
+
+                $validColumns = SidangSubmission::getTableColumns();
+                if (in_array($orderColumn, $validColumns)) {
+                    $query->orderBy($orderColumn, $orderDir);
+                }
             }
 
             $data = $query->skip($request->start)
@@ -647,20 +668,20 @@ class user_subSidang extends Controller
                 ->get()
                 ->map(function ($item) {
                     return [
-                        'id'          => $item->id,
-                        'form1'       => $item->un1_buku
+                        'id'     => $item->id,
+                        'form1'  => $item->un1_buku
                         ? '<a href="' . asset('storage/' . $item->un1_buku) . '" target="_blank">Lihat File</a>'
                         : '-',
-                        'form2'       => $item->un2_logbook
+                        'form2'  => $item->un2_logbook
                         ? '<a href="' . asset('storage/' . $item->un2_logbook) . '" target="_blank">Lihat File</a>'
                         : '-',
-                        'form3'       => $item->un3_ba
+                        'form3'  => $item->un3_ba
                         ? '<a href="' . asset('storage/' . $item->un3_ba) . '" target="_blank">Lihat File</a>'
                         : '-',
-                        'form4'       => $item->un4_pengesahan
+                        'form4'  => $item->un4_pengesahan
                         ? '<a href="' . asset('storage/' . $item->un4_pengesahan) . '" target="_blank">Lihat File</a>'
                         : '-',
-                        'status'      => $item->status_sidang,
+                        'status' => $item->status_sidang,
 
                     ];
                 });

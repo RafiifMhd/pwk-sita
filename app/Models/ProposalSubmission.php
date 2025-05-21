@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class ProposalSubmission extends Model
 {
@@ -16,6 +17,11 @@ class ProposalSubmission extends Model
         'draft_file_path',
         'status_pengajuan',
     ];
+
+    public static function getTableColumns()
+    {
+        return Schema::getColumnListing((new self)->getTable());
+    }
 
     public function user()
     {
