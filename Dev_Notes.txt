@@ -31,8 +31,10 @@ notes bimbingan hari ini:
     input nilai (format bisa diliat dari referensi BAP masing2 sidang)
     masukkan juga poin penilaiannya
     7. pendaftaran mandiri mahasiswa bisa buat jadwal sendiri di semhas dan su
-    8. ⁠halaman edit panduan yg diupload ( tamplate laporan TA, dan teknis pelaksanaan )
+    8. ⁠halaman edit panduan yg diupload ( tamplate laporan TA, dan teknis pelaksanaan )
 
+validasi jadwal ga bisa sama tanggal dan waktunya
+notif email
 
 
 -----------------------------------------------------------------------------------------------
