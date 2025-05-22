@@ -38,7 +38,6 @@
         #table2 th {
             word-break: break-word;
             white-space: normal;
-            min-width: 200px;
         }
 
 
@@ -178,7 +177,7 @@
             /** GET::PERIODE */
             $('#table1').DataTable({
                 dom: 'ftp',
-                responsive: true,
+                responsive: false,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
@@ -239,7 +238,7 @@
 
             $('#table2').DataTable({
                 dom: 'ftp',
-                responsive: true,
+                responsive: false,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
