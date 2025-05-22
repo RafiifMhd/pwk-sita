@@ -6,16 +6,51 @@
     <style>
         .dataTables_wrapper .dataTables_filter {
             float: left !important;
-            /* Paksa float ke kiri */
             text-align: left !important;
-            /* Pastikan teks juga rata kiri */
-
             margin-bottom: 10px;
         }
 
         .dataTables_wrapper .dataTables_paginate {
             float: right !important;
             text-align: right !important;
+        }
+
+
+        #table1 {
+            table-layout: fixed;
+            word-wrap: break-word;
+            width: 100% !important;
+        }
+
+        #table1 td, // semua halaman pakai id table seragam spt ini
+        #table1 th {
+            word-break: break-word;
+            white-space: normal;
+        }
+
+        .dataTables_wrapper {
+            overflow-x: auto;
+        }
+
+
+        .badge-status {
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+            padding: 0.35em 0.6em;
+            font-size: 0.875em;
+            font-weight: 600;
+            border-radius: 0.25rem;
+        }
+
+        .badge-open {
+            background-color: #b0f7d7;
+            color: #0f5132;
+        }
+
+        .badge-closed {
+            background-color: #f0a5ab;
+            color: #842029;
         }
     </style>
 @endpush
@@ -33,10 +68,10 @@
                         </div>
                     </div>
                     <div class="col-12 mt-2">
-                        <table class="table table-bordered" id="tableTopikUser">
+                        <table class="table table-bordered" id="table1">
                             <thead>
                                 <tr class="table-info">
-                                    <th scope="col" colspan="8" id="periode-title">Nama Periode</th>
+                                    <th scope="col" colspan="7" id="table1">Nama Periode</th>
                                 </tr>
                                 <tr class="table-secondary">
                                     <th scope="col">Kelompok Keahlian</th>
@@ -62,9 +97,9 @@
     <script>
         $(document).ready(function() {
             /** GET::TOPIK_DOSEN */
-            var table = $('#tableTopikUser').DataTable({
+            var table = $('#table1').DataTable({
                 dom: 'ftp',
-                responsive: true,
+                scrollX: true,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
@@ -74,10 +109,10 @@
                     dataSrc: function(json) {
                         if (json.data.length > 0) {
                             var title = json.data[0].period_name;
-                            $('#periode-title').text(
+                            $('#table1').text(
                                 title);
                         } else {
-                            $('#periode-title').text('Periode Pengajuan Proposal Tidak Dibuka');
+                            $('#table1').text('Periode Pengajuan Proposal Tidak Dibuka');
                         }
 
                         return json.data;

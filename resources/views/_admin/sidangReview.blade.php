@@ -276,28 +276,28 @@
             $('.pnj1').on('click', function(e) {
                 e.preventDefault();
 
-                var selectedValue = $(this).data('value'); // Ambil nilai dari atribut data-value
-                var selectedText = $(this).text(); // Ambil teks dari item yang dipilih
+                var selectedValue = $(this).data('value');
+                var selectedText = $(this).text();
 
-                $('#dosen_penguji1').val(selectedValue); // Set nilai input tersembunyi
-                $('#dropdownMenuButton1').text(selectedText); // Ubah teks tombol dropdown (opsional)
+                $('#dosen_penguji1').val(selectedValue);
+                $('#dropdownMenuButton1').text(selectedText); 
             });
             // Dropdown setting
             $('.pnj2').on('click', function(e) {
                 e.preventDefault();
 
-                var selectedValue = $(this).data('value'); // Ambil nilai dari atribut data-value
-                var selectedText = $(this).text(); // Ambil teks dari item yang dipilih
+                var selectedValue = $(this).data('value');
+                var selectedText = $(this).text();
 
-                $('#dosen_penguji2').val(selectedValue); // Set nilai input tersembunyi
-                $('#dropdownMenuButton2').text(selectedText); // Ubah teks tombol dropdown (opsional)
+                $('#dosen_penguji2').val(selectedValue);
+                $('#dropdownMenuButton2').text(selectedText);
             });
             // Dropdown setting
             $('.waktu').on('click', function(e) {
                 e.preventDefault();
 
-                var selectedValue = $(this).data('value'); // Ambil nilai dari atribut data-value
-                var selectedText = $(this).text(); // Ambil teks dari item yang dipilih
+                var selectedValue = $(this).data('value');
+                var selectedText = $(this).text();
 
                 $('#waktu_sidang').val(selectedValue); // Set nilai input tersembunyi
                 $('#dropdownMenuButton3').text(selectedText); // Ubah teks tombol dropdown (opsional)

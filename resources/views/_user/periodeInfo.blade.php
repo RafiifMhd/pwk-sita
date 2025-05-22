@@ -6,10 +6,7 @@
     <style>
         .dataTables_wrapper .dataTables_filter {
             float: left !important;
-            /* Paksa float ke kiri */
             text-align: left !important;
-            /* Pastikan teks juga rata kiri */
-
             margin-bottom: 10px;
         }
 
@@ -17,6 +14,24 @@
             float: right !important;
             text-align: right !important;
         }
+
+
+        #table1 {
+            table-layout: fixed;
+            word-wrap: break-word;
+            width: 100% !important;
+        }
+
+        #table1 td, // semua halaman pakai id table seragam spt ini
+        #table1 th {
+            word-break: break-word;
+            white-space: normal;
+        }
+
+        .dataTables_wrapper {
+            overflow-x: auto;
+        }
+
 
         .badge-status {
             display: inline-block;
@@ -40,7 +55,6 @@
     </style>
 @endpush
 
-
 @section('mainContent')
     <div class="body flex-grow-1">
         <div class="container-lg px-4">
@@ -54,7 +68,7 @@
                         </div>
                     </div>
                     <div class="col-12 mt-2">
-                        <table class="table table-bordered" id="tablePeriodeUser">
+                        <table class="table table-bordered" id="table1">
                             <thead>
                                 <tr class="table-secondary">
                                     <th scope="col">Nama Periode</th>
@@ -78,9 +92,9 @@
     <script>
         $(document).ready(function() {
             /** GET::PERIODE */
-            $('#tablePeriodeUser').DataTable({
+            $('#table1').DataTable({
                 dom: 'ftp',
-                responsive: true,
+                scrollX: true,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,

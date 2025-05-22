@@ -22,7 +22,7 @@
             width: 100% !important;
         }
 
-        #table1 td,
+        #table1 td, // semua halaman pakai id table seragam spt ini
         #table1 th {
             word-break: break-word;
             white-space: normal;
@@ -143,11 +143,10 @@
             /** GET::TOPIK_DOSEN */
             var table = $('#table1').DataTable({
                 dom: 'ftp',
-                responsive: true,
+                scrollX: true,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
-                scrollX: true,
                 ajax: '{{ route('dosen.periode-jsonTopik') }}',
                 columns: [{
                         data: 'title',

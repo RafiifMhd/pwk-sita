@@ -177,7 +177,6 @@
             /** GET::PERIODE */
             $('#table1').DataTable({
                 dom: 'ftp',
-                responsive: false,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
@@ -238,7 +237,6 @@
 
             $('#table2').DataTable({
                 dom: 'ftp',
-                responsive: false,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
@@ -288,7 +286,7 @@
                     }
                 ],
                 order: [
-                    [0, 'desc']
+                    [5, 'desc']
                 ]
             });
 
@@ -303,10 +301,9 @@
                 kuotaCell.html(`
                 <div class="input-group input-group-sm border border-secondary rounded">
                     <input type="number" class="form-control" value="${currentKuota}" min="0">
-                    <button class="btn btn-secondary save-kuota" data-id="${id}">Save</button>
+                    <button class="btn btn-sm btn-secondary save-kuota" data-id="${id}">Save</button>
                 </div>
-
-    `);
+                `);
             });
 
             $('#table2').on('click', '.save-kuota', function() {
@@ -361,8 +358,7 @@
                 $('#dropdownMenuButton').text(selectedText);
             });
         });
-    </script>
-    <script>
+
         /** POST::CLOSE_PERIODE */
         function tutupPeriode(id) {
             //  if (confirm('Yakin ingin menutup periode ini?')) {
@@ -383,8 +379,7 @@
             });
             //  }
         }
-    </script>
-    <script>
+
         /** POST::ADD_PERIODE */
         $('#formPeriode').on('submit', function(e) {
             e.preventDefault();
@@ -416,8 +411,7 @@
                 }
             });
         });
-    </script>
-    <script>
+
         function hapusPeriode(id) {
             fetch(`/admin/periode/del-json/${id}`, {
                     method: 'DELETE',

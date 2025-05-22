@@ -102,7 +102,6 @@
         $(document).ready(function() {
             var table = $('#table1').DataTable({
                 "dom": 'ftp',
-                responsive: true,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,

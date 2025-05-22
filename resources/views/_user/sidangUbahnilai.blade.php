@@ -2,6 +2,59 @@
 
 @section('breadcrum-title', 'Sidang / Sidang Ujian')
 
+@push('style')
+    <style>
+        .dataTables_wrapper .dataTables_filter {
+            float: left !important;
+            text-align: left !important;
+            margin-bottom: 10px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            float: right !important;
+            text-align: right !important;
+        }
+
+
+        #table1 {
+            table-layout: fixed;
+            word-wrap: break-word;
+            width: 100% !important;
+        }
+
+        #table1 td, // semua halaman pakai id table seragam spt ini
+        #table1 th {
+            word-break: break-word;
+            white-space: normal;
+        }
+
+        .dataTables_wrapper {
+            overflow-x: auto;
+        }
+
+
+        .badge-status {
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+            padding: 0.35em 0.6em;
+            font-size: 0.875em;
+            font-weight: 600;
+            border-radius: 0.25rem;
+        }
+
+        .badge-open {
+            background-color: #b0f7d7;
+            color: #0f5132;
+        }
+
+        .badge-closed {
+            background-color: #f0a5ab;
+            color: #842029;
+        }
+    </style>
+@endpush
+
 @section('mainContent')
     <div class="body flex-grow-1">
         <div class="container-lg px-4">
@@ -64,10 +117,10 @@
                             <div class="row">
                                 <div class="col-2">
                                     <div class="d-flex gap-2">
-                                        <button type="submit" class="btn btn-primary flex-fill">
+                                        <button type="submit" class="btn btn-sm btn-primary flex-fill">
                                             Submit
                                         </button>
-                                        <button type="reset" class="btn btn-danger text-light flex-fill">
+                                        <button type="reset" class="btn btn-sm btn-danger text-light flex-fill">
                                             Reset
                                         </button>
                                     </div>
@@ -77,7 +130,7 @@
                     </div>
                     <div class="col-12 mt-3">
                         <span class="fw-normal  ">Data pengajuan sidang</span>
-                        <table class="table table-bordered" id="tableDataUbah">
+                        <table class="table table-bordered" id="table1">
                             <thead>
                                 <tr class="table-secondary">
                                     <th scope="col">Laporan TA Final</th>
@@ -101,9 +154,9 @@
     <script>
         $(document).ready(function() {
             /** GET::DATA_SIDU */
-            $('#tableDataUbah').DataTable({
+            $('#table1').DataTable({
                 dom: 'ftp',
-                responsive: true,
+                scrollX: true,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
@@ -150,7 +203,7 @@
                     success: function(response) {
                         alert(response.message || 'Proposal berhasil diajukan!');
                         $('#formUbah')[0].reset();
-                        $('#tableDataUbah').DataTable().ajax.reload();
+                        $('#table1').DataTable().ajax.reload();
                     },
                     error: function(xhr) {
                         let msg = "Terjadi kesalahan.";
