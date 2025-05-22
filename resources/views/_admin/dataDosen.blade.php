@@ -28,6 +28,19 @@
             white-space: normal;
         }
 
+        #table2 {
+            table-layout: fixed;
+            word-wrap: break-word;
+            width: 100% !important;
+        }
+
+        #table2 td,
+        #table2 th {
+            word-break: break-word;
+            white-space: normal;
+        }
+
+
         .dataTables_wrapper {
             overflow-x: auto;
         }

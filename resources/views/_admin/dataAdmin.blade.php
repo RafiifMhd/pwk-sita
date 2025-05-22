@@ -23,11 +23,23 @@
         }
 
         #table1 td,
-        // semua halaman pakai id table seragam spt ini
         #table1 th {
             word-break: break-word;
             white-space: normal;
         }
+
+        #table2 {
+            table-layout: fixed;
+            word-wrap: break-word;
+            width: 100% !important;
+        }
+
+        #table2 td,
+        #table2 th {
+            word-break: break-word;
+            white-space: normal;
+        }
+
 
         .dataTables_wrapper {
             overflow-x: auto;
@@ -55,6 +67,7 @@
         }
     </style>
 @endpush
+
 
 @section('mainContent')
     <div class="body flex-grow-1">
@@ -227,7 +240,7 @@
                     _token: '{{ csrf_token() }}',
                     name: $('#name').val(),
                     email: $('#email').val(),
-                    
+
                 },
                 success: function(response) {
                     alert(response.message);

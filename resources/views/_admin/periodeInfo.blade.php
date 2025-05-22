@@ -118,7 +118,8 @@
                                 class="p-2 text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-3 fst-italic">
                                 <span class="fw-semibold fst-normal">Info! <br></span>1. Harap diperhatikan bahwa tanggal
                                 tidak dapat dibuka sebelum hari-H pembukaan periode. <br>2.Tanggal dapat ditutup sebelum
-                                ataupun sesudah hari-H penutupan periode, penutupan tidak otomatis mengikuti tanggal.</p>
+                                ataupun sesudah hari-H penutupan periode, penutupan tidak otomatis mengikuti tanggal.
+                            </p>
                             <div class="col-8 col-md-2">
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary btn-sm flex-fill">

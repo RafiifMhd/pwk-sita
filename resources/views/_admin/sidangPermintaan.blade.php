@@ -2,11 +2,77 @@
 
 @section('breadcrum-title', 'Jadwal Sidang / Permintaan Sidang')
 
+@push('style')
+    <style>
+        .dataTables_wrapper .dataTables_filter {
+            float: left !important;
+            text-align: left !important;
+            margin-bottom: 10px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            float: right !important;
+            text-align: right !important;
+        }
+
+
+        #table1 {
+            table-layout: fixed;
+            word-wrap: break-word;
+            width: 100% !important;
+        }
+
+        #table1 td,
+        #table1 th {
+            word-break: break-word;
+            white-space: normal;
+        }
+
+        #table2 {
+            table-layout: fixed;
+            word-wrap: break-word;
+            width: 100% !important;
+        }
+
+        #table2 td,
+        #table2 th {
+            word-break: break-word;
+            white-space: normal;
+        }
+
+
+        .dataTables_wrapper {
+            overflow-x: auto;
+        }
+
+
+        .badge-status {
+            display: inline-block;
+            min-width: 70px;
+            text-align: center;
+            padding: 0.35em 0.6em;
+            font-size: 0.875em;
+            font-weight: 600;
+            border-radius: 0.25rem;
+        }
+
+        .badge-open {
+            background-color: #b0f7d7;
+            color: #0f5132;
+        }
+
+        .badge-closed {
+            background-color: #f0a5ab;
+            color: #842029;
+        }
+    </style>
+@endpush
+
 @section('mainContent')
     <div class="body flex-grow-1">
-        <div class="container-lg px-4">
+        <div class="container-lg px-3">
             <div class="row g-4 mb-4">
-                <div class="card mb-4 py-3">
+                <div class="card py-3">
                     <span class="fw-semibold fs-5 mb-1">Kelola jadwal sidang</span>
                     <hr />
                     <div class="row">
@@ -15,9 +81,7 @@
                         </div>
                     </div>
                     <div class="col-12 mt-2">
-                        <span class="fw-normal">Daftar Permintaan Sidang</span>
-                        <table class="table table-bordered" id="tablePermintaan">
-                            <pre>{{ route('admin.sidang-jsonData') }}</pre>
+                        <table class="table table-bordered" id="table1">
                             <thead>
                                 <tr class="table-secondary">
                                     <th scope="col">NIM</th>
@@ -46,12 +110,13 @@
     <script>
         $(document).ready(function() {
             /** GET::DATA_PERMINTAAN */
-            $('#tablePermintaan').DataTable({
+            $('#table1').DataTable({
                 dom: 'ftp',
                 responsive: true,
                 lengthChange: false,
                 processing: true,
                 serverSide: true,
+                scrollX: true,
                 ajax: '{{ route('admin.sidang-jsonData') }}',
 
                 // data ini untuk table di landing page, buatkan halaman baru untuk review lengkap serta menambah dosen penguji dan jadwal

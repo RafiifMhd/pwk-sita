@@ -1,5 +1,3 @@
-?   <base> di halaman utama diperlukan di proyek laravel atau hanya untuk html?
-
 $   php artisan serve --host=127.0.0.1
 
 $   php artisan migrate:fresh --seed
