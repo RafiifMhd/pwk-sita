@@ -38,6 +38,7 @@
         #table2 th {
             word-break: break-word;
             white-space: normal;
+            min-width: 120px;
         }
 
 
@@ -159,7 +160,7 @@
                                 <tr class="table-secondary">
                                     <th scope="col">Nama Dosen</th>
                                     <th scope="col">Tipe Dosen</th>
-                                    <th scope="col" style="min-width:150px;">Kuota</th>
+                                    <th scope="col">Kuota</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>
