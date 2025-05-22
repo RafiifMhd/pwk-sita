@@ -38,7 +38,7 @@
         #table2 th {
             word-break: break-word;
             white-space: normal;
-            min-width: 120px;
+            min-width: 200px;
         }
 
 
